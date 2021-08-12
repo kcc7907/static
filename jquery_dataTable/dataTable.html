@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dataTable</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js' integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==' crossorigin='anonymous'></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js' integrity='sha512-pSyYzOKCLD2xoGM1GwkeHbdXgMRVsSqQaaUoHskx/HF09POwvow2VfVEdARIYwdeFLbu+2FCOTRYuiyeGxXkEg==' crossorigin='anonymous'></script>
+</head>
+<body>
+    <div id="app">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+<script>
+    $.ajax('./data.json').done(res=>{
+        var table = $('#table').DataTable( {
+            data: res,
+            columns: [
+              { data: "id" },
+              { data: "name" },
+              { data: "salary" },
+              { "defaultContent": "" },
+            ],
+            columnDefs: [ {
+                "targets": -1,
+                "data": null,
+                "defaultContent": "<button>Click!</button>"
+            } ]
+        });
+    })
+
+
+//     $(document).ready(function() {
+//     $('#table').DataTable( {
+//         "ajax": './data.json'
+//     } );
+// } );
+</script>
+</html>
