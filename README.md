@@ -2,4 +2,4 @@
 
 ### Some random static pages
 
-Testing for some framwork or skill that i don't know yet
+Testing for some framwork or skill that i don't know yet 
