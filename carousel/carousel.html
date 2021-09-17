@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carousel</title>
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.1/css/bootstrap.min.css"
+      integrity="sha512-6KY5s6UI5J7SVYuZB4S/CZMyPylqyyNZco376NM2Z8Sb8OxEdp02e1jkKk/wZxIEmjQ6DRCEBhni+gpr9c4tvA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.1/js/bootstrap.min.js"
+      integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <div id="app" class="p-3">
+      <h1 class="text-center"><b> Carousel Plugins</b></h1>
+      <div class="text-center"><a href="https://github.com/kcc7907/static/carousel" target="_blank"> Go to my github</a></div>
+
+      <!-- jquery jcarousel 無樣式自己做 -->
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.9/jquery.jcarousel.min.js"
+        integrity="sha512-5TU8T3STShZiLsdqDqiKnj0Z72ccPZpIDCuItxc2S7G3lyiwqiuLuDFVNsLQ7Hgu5f33DlZ2KAJspbn6NAXqnA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <section>
+        <style>
+          .jcarousel {
+            position: relative;
+            overflow: hidden;
+          }
+          .jcarousel ul {
+            width: 20000em;
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+          .jcarousel li {
+            float: left;
+          }
+        </style>
+        <h2 class="text-center mt-5">jquery jcarousel</h2>
+        <div class="text-center mb-3">
+          <a
+            href="https://sorgalla.com/jcarousel/?utm_source=cdnjs&utm_medium=cdnjs_link&utm_campaign=cdnjs_library"
+            target="_blank"
+          >
+            Go to doc</a
+          >
+        </div>
+        <div class="jcarousel">
+          <ul>
+            <li class="vw-100">
+              <img src="https://source.unsplash.com/random/1920x500?sig=1" />
+            </li>
+            <li class="vw-100">
+              <img src="https://source.unsplash.com/random/1920x500?sig=2" />
+            </li>
+            <li class="vw-100">
+              <img src="https://source.unsplash.com/random/1920x500?sig=3" />
+            </li>
+          </ul>
+        </div>
+        <div class="m-2">
+          <button class="btn jleft me-2"><</button>
+          <button class="btn jright">></button>
+        </div>
+      </section>
+
+      <!-- owl carousel -->
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+      <section>
+        <h2 class="text-center mt-5">owl carousel</h2>
+        <div class="text-center mb-3">
+          <a
+            href="https://owlcarousel2.github.io/OwlCarousel2/docs/started-installation.html"
+            target="_blank"
+          >
+            Go to doc</a
+          >
+        </div>
+        <div class="owl-carousel owl-theme">
+          <div class="item vw-100">
+            <img src="https://source.unsplash.com/random/1920x500?sig=1" />
+          </div>
+          <div class="item vw-100">
+            <img src="https://source.unsplash.com/random/1920x500?sig=2" />
+          </div>
+          <div class="item vw-100">
+            <img src="https://source.unsplash.com/random/1920x500?sig=3" />
+          </div>
+        </div>
+      </section>
+
+      <!-- swiper -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.6/swiper-bundle.css"
+        integrity="sha512-k/ajQk10gq0MXEJ3gDVRQe4ZkmXDsGGDa4D5PWCQDH1drJmipCfhZHjj+WsXqyEs0dlo1gJmaPbviTb8yLC5hg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/7.0.6/swiper-bundle.min.js"
+        integrity="sha512-r1+wZ6Dt2YNg8FujUHBbiXmDRNcVLTcN2q+lm0TSbmoBNUFJ4FdQ3zLeShz0bllBlzQ0QWtZuzJgdrW9xGc2Dw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <section class="swiper">
+        <h2 class="text-center mt-5">Swiper</h2>
+        <div class="text-center mb-3">
+          <a href="https://swiperjs.com/swiper-api" target="_blank">
+            Go to doc</a
+          >
+        </div>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://source.unsplash.com/random/1920x500?sig=1" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://source.unsplash.com/random/1920x500?sig=2" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://source.unsplash.com/random/1920x500?sig=3" />
+          </div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+      </section>
+    </div>
+
+    <script src="./carousel.js"></script>
+  </body>
+</html>
