@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TW_Administrative_District</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"
+      integrity="sha512-pSyYzOKCLD2xoGM1GwkeHbdXgMRVsSqQaaUoHskx/HF09POwvow2VfVEdARIYwdeFLbu+2FCOTRYuiyeGxXkEg=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="card" v-for="(member, k) in members" :key="k">
+        <h1>{{member.name}}</h1>
+        <!-- <select name="" id="" @change="changeCity($event)">
+          <option v-for="(item , index) in city" :value="index">
+            {{ item.city }}
+          </option>
+        </select> -->
+        <select name="" id="" v-model="member.value">
+          <option v-for="item  in city" :value="item.city">
+            {{ item.city }}
+          </option>
+        </select>
+        <select name="" id="" >
+          <option v-for="(area, c) in getCurrentArea(members[k].value)" :key="c">
+            {{ area }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <script>
+      json = [
+        {
+          city: "台北市",
+          area: [
+            "中正區",
+            "大同區",
+            "中山區",
+            "萬華區",
+            "信義區",
+            "松山區",
+            "大安區",
+            "南港區",
+            "北投區",
+            "內湖區",
+            "士林區",
+            "文山區",
+          ],
+        },
+        {
+          city: "新北市",
+          area: [
+            "板橋區",
+            "新莊區",
+            "泰山區",
+            "林口區",
+            "淡水區",
+            "金山區",
+            "八里區",
+            "萬里區",
+            "石門區",
+            "三芝區",
+            "瑞芳區",
+            "汐止區",
+            "平溪區",
+            "貢寮區",
+            "雙溪區",
+            "深坑區",
+            "石碇區",
+            "新店區",
+            "坪林區",
+            "烏來區",
+            "中和區",
+            "永和區",
+            "土城區",
+            "三峽區",
+            "樹林區",
+            "鶯歌區",
+            "三重區",
+            "蘆洲區",
+            "五股區",
+          ],
+        },
+        {
+          city: "桃園市",
+          area: [
+            "桃園區",
+            "中壢區",
+            "平鎮區",
+            "八德區",
+            "楊梅區",
+            "蘆竹區",
+            "龜山區",
+            "龍潭區",
+            "大溪區",
+            "大園區",
+            "觀音區",
+            "新屋區",
+            "復興區",
+          ],
+        },
+        {
+          city: "新竹縣",
+          area: [
+            "竹北市",
+            "竹東鎮",
+            "新埔鎮",
+            "關西鎮",
+            "峨眉鄉",
+            "寶山鄉",
+            "北埔鄉",
+            "橫山鄉",
+            "芎林鄉",
+            "湖口鄉",
+            "新豐鄉",
+            "尖石鄉",
+            "五峰鄉",
+          ],
+        },
+      ];
+      members = [
+        {
+          name:'Alex',
+          city:'新竹縣'
+        },
+        {
+          name:'Bella',
+          city:'桃園市'
+        },
+        {
+          name:'Carol',
+          city:'台北市'
+        },
+      ]
+      new Vue({
+        el: "#app",
+        data: {
+          city: json,
+          members: members,
+        },
+        methods: {
+          getCurrentArea(city){
+            console.log('city',city);
+            const result = this.city.filter( value =>{
+              return value.city === city
+            })
+            console.log('end',result);
+            if(result.length!==0)return result[0].area
+          },
+        },
+        computed: {
+          area() {
+            return this.city[this.seleted].area;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
