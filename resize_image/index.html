@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>resize test</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moveable/0.26.0/moveable.min.js"
+      integrity="sha512-11d0DYP3XlvD7lodY0zPuxsyw3xOch9O/7RvQUehAUrHQNFD0lyGLqJnI3lm2zHq7ytRLDnuXAsmKnp2bji8gg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body style="background: #ddd; height: 100vh; padding: 1em">
+    <div  style="background: #aaa;width: 50vw; height: 50vh">
+      <img class="target" src="https://fakeimg.pl/200x200/?text=test" alt="" />
+    </div>
+
+    <script>
+      const aaa = document.querySelector('div')
+      const bbb = document.querySelector('img')
+      bbb.addEventListener('click',e => e.target.classList.add('target'))
+      const moveable = new Moveable(aaa, {
+        target: document.querySelector(".target"),
+        resizable: true,
+        padding: { left: 5, top: 5, right: 5, bottom: 5 },
+        renderDirections: [,"se"],
+        snappable: true,
+        bounds : { left: 0, right: 500, top: 0, bottom: 1000},
+        keepRatio: true,
+      });
+      const frame = {
+        translate: [0, 0],
+      };
+      moveable
+        .on("resizeStart", (e) => {
+          // Set origin if transform-origin use %.
+          e.setOrigin(["%", "%"]);
+
+          // If cssSize and offsetSize are different, set cssSize. (no box-sizing)
+          const style = window.getComputedStyle(e.target);
+          const cssWidth = parseFloat(style.width);
+          const cssHeight = parseFloat(style.height);
+          e.set([cssWidth, cssHeight]);
+
+          // If a drag event has already occurred, there is no dragStart.
+        })
+        .on("resize", (e) => {
+          e.target.style.width = `${e.width}px`;
+          e.target.style.height = `${e.height}px`;
+
+          // get drag event
+          frame.translate = e.drag.beforeTranslate;
+          e.target.style.transform = `translate(${e.drag.beforeTranslate[0]}px, ${e.drag.beforeTranslate[1]}px)`;
+        })
+        .on("resizeEnd", (e) => {
+          console.log("onResizeEnd", e.target, e.isDrag);
+        });
+    </script>
+  </body>
+</html>
