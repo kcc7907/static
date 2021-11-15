@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Social Media Share Test</title>
+    <!-- Search Engine -->
+    <meta
+      name="description"
+      content="Testing social media card & content on github pages."
+    />
+    <meta
+      name="image"
+      content="https://source.unsplash.com/DfMMzzi3rmg/640x425"
+    />
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Social Media Share Test" />
+    <meta
+      itemprop="description"
+      content="Testing social media card & content on github pages."
+    />
+    <meta
+      itemprop="image"
+      content="https://source.unsplash.com/DfMMzzi3rmg/640x425"
+    />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Social Media Share Test" />
+    <meta
+      name="twitter:description"
+      content="Testing social media card & content on github pages."
+    />
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Social Media Share Test" />
+    <meta
+      name="og:description"
+      content="Testing social media card & content on github pages."
+    />
+    <meta name="og:type" content="website" />
+    
+    <style>
+      @font-face {
+        font-family: "icon";
+        src: url("./fontello_icons/fontello.woff?7664915") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+      * {
+        font-family: "icon";
+        font-style: normal;
+      }
+      body {
+        padding: 1rem 2rem;
+      }
+      button {
+        padding: 0.3rem 0.8rem;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-left: 1rem;
+        color: #fff;
+        cursor: pointer;
+      }
+      .red{
+        background: #e60012;
+      }
+      .fb{
+        background-color: #4064AC;
+      }
+      .twitter{
+        background-color: #1C9CEA;
+      }
+      .line{
+        background-color: #18B704;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="red">
+      <i>&#xF1E0;</i>
+    </button>
+    <button data-social="line" class="line">
+      <i>&#xe803;</i>
+    </button>
+    <button data-social="facebook" class="fb">
+      <i>&#xF09A;</i>
+    </button>
+    <button data-social="twitter" class="twitter">
+      <i>&#xF099;</i>
+    </button>
+
+    <br />
+    <hr />
+    <br />
+
+    <img src="https://source.unsplash.com/DfMMzzi3rmg/640x425" alt="fb" />
+
+    <script src="//cdn.jsdelivr.net/npm/goodshare.js@6/goodshare.min.js"></script>
+  </body>
+</html>
