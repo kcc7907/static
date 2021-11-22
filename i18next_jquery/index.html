@@ -40,7 +40,14 @@
 
     <div class="content">
       <input data-i18n="[placeholder]input.placeholder" />
-    </div>
+    </div><br>
+
+    multiple attributes :
+    <p data-i18n="[title]h2;[id]id;[data-test]test;test"></p><br>
+    Not innerHtml : 
+    <p data-i18n="lines"></p><br>
+    innerHtml : 
+    <p data-i18n="[html]lines"></p>
 
     <script>
       (async () => {
@@ -62,10 +69,13 @@
         );
 
         async function langChange(lang) {
+          //wait for the data loaded
           await i18next.changeLanguage(lang);
-          $("body").localize().addClass(`i18n-${lang}`);
+          //switch class on body
+          $("body").localize().attr('class',`i18n-${lang}`);
         }
 
+        //add event to change lang
         $("#btnEN").on("click", () => {
           langChange("en");
         });

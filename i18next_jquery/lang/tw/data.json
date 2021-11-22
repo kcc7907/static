@@ -8,5 +8,8 @@
     "page2": "第二頁"
   },
   "h2": "標題 jquery-i18next",
-  "lang": "語言切換"
+  "lang": "語言切換",
+  "id": "test-tw-id",
+  "test": "測試",
+  "lines": "This is line 1.<br>This is line 2.<br>This is line 3."
 }

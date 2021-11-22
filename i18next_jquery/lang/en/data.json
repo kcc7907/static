@@ -8,5 +8,8 @@
     "page2": "Page Two"
   },
   "h2": "jquery-i18next",
-  "lang":"Language"
+  "lang": "Language",
+  "id": "test-en-id",
+  "test": "Testing",
+  "lines": "This is line 1.<br>This is line 2.<br>This is line 3."
 }
