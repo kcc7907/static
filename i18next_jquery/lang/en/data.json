@@ -1,0 +1,12 @@
+{
+  "input": {
+    "placeholder": "a placeholder"
+  },
+  "nav": {
+    "home": "Home",
+    "page1": "Page One",
+    "page2": "Page Two"
+  },
+  "h2": "jquery-i18next",
+  "lang":"Language"
+}
