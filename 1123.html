@@ -1,30 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1123 meet</title>
-  <style>
-    #btn-copy{
-      background: #fff;
-      border-radius: 5px;
-      padding: .2rem .3rem;
-      margin-left: .5rem;
-    }
-  </style>
-</head>
-<body>
-  <div>
-    <span>test for copy</span>
-    <button id="btn-copy" onclick="copy()">copy</button>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1123 meet</title>
+    <style>
+      .copy {
+        background: #fff;
+        border-radius: 5px;
+        padding: 0.1rem 0.2rem;
+        margin-left: 0.5rem;
+        font-size: 10px;
+      }
+      body {
+        padding: 4rem 15rem;
+      }
+      a {
+        margin-right: 0.5rem;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      li {
+        margin-bottom: 1rem;
+      }
+      ol {
+        margin-bottom: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>11 / 23</h1>
+    <div>
+      <h3>
+        <a href="https://www.bizhub.com.tw/" target="_blank">商務中心</a>
+        <a
+          href="https://www.bizhub.com.tw/admin"
+          target="_blank"
+          rel="noopener noreferrer"
+          >admin</a
+        >
+      </h3>
+      <ol>
+        <li>
+          <a
+            href="https://accounts.google.com/ServiceLogin/signinchooser?service=analytics&passive=1209600&continue=https%3A%2F%2Fanalytics.google.com%2Fanalytics%2Fweb%2F%3Fhl%3Dzh-TW%23&followup=https%3A%2F%2Fanalytics.google.com%2Fanalytics%2Fweb%2F%3Fhl%3Dzh-TW&hl=zh-TW&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GA</a
+          >
+        </li>
+        <li>新增最新消息排序</li>
+        <li>Email 新增資訊</li>
+      </ol>
+    </div>
 
-  <script>
-    function copy(){
-      const v = event.target.closest('div').querySelector('span').innerText;
-      navigator.clipboard.writeText('https://www.google.com')
-    }
-  </script>
-</body>
+    <h3>拼字比賽</h3>
+    <ol>
+      <li>
+        <span
+          >\\fs1\joypublic\資訊部\Alvis\學藝競賽程式\2021拼字比賽計分程式</span
+        >
+        <button class="copy" onclick="copy()">copy</button>
+      </li>
+      <li>更改字體顯示&大小</li>
+    </ol>
+
+    <h3>
+      <a
+        href="https://joyshop.joy.com.tw/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >網路書店</a
+      >
+    </h3>
+    <ol>
+      <li>
+        <a
+          href="https://joyshop.joy.com.tw/products/joy-to-the-world-october-2021-1"
+          target="_blank"
+          rel="noopener noreferrer"
+          >舊版頁面參考</a
+        >
+      </li>
+      <li>分類調整</li>
+      <li>商品介紹文字更改</li>
+    </ol>
+
+    <h3>
+      <a
+        href="http://jo.joy.com.tw/index.php?option=com_your_account"
+        target="_blank"
+        rel="noopener noreferrer"
+        >SSO</a
+      >
+    </h3>
+    <ol>
+      <li>新增SSO各平台連結頁</li>
+      <li>新增SSO登入頁</li>
+    </ol>
+
+    <h3>
+      <a href="https://testedutool.joy.com.tw/" target="_blank">Edutool</a>
+    </h3>
+    <ol>
+      <li>新增雲端學院成績頁面</li>
+      <li>調整簽名檔功能</li>
+    </ol>
+
+    <h3>
+      <a
+        href="http://jo.joy.com.tw/action/magicpen/index.php"
+        target="_blank"
+        rel="noopener noreferrer"
+        >教材音檔</a
+      >
+    </h3>
+    <ol>
+      <li>
+        <a
+          href="http://jo.joy.com.tw/action/magicpen/index_1118.php"
+          target="_blank"
+          rel="noopener noreferrer"
+          >舊版頁面參考</a
+        >
+      </li>
+      <li>下載分為兩個 音檔&解答本</li>
+      <li>刪除壓縮密碼 改為網頁輸入</li>
+    </ol>
+    <script>
+      function copy() {
+        let text = event.target.closest("li").querySelector("span").innerText;
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+          let textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            let successful = document.execCommand("copy");
+            console.log("Copying text command was " + text);
+          } catch (err) {
+            console.log("Unable to copy value , error : " + err.message);
+          }
+          document.body.removeChild(textArea);
+          return;
+        }
+        console.log(text);
+        navigator.clipboard.writeText(text);
+      }
+    </script>
+  </body>
 </html>
