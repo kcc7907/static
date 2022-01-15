@@ -27,8 +27,8 @@
             video.webkitRequestFullscreen();
           } else if (video.msRequestFullscreen) {
             video.msRequestFullscreen();
-          } else if (video.webkitRequestFullscreen) {
-            video.webkitRequestFullscreen();
+          } else if (video.webkitEnterFullScreen) {
+            video.webkitEnterFullScreen();
           } else {
             alert("Full screen not supported");
             return;
