@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>onorientationchange orientation 偵測</h1>
+    <script>
+      window.addEventListener(
+        "onorientationchange" in window ? "orientationchange" : "resize",
+        function () {
+          if (window.orientation === 180 || window.orientation === 0) {
+            alert("竖屏状态！");
+          }
+          if (window.orientation === 90 || window.orientation === -90) {
+            alert("横屏状态！");
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
