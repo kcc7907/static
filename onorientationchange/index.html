@@ -8,7 +8,55 @@
   </head>
   <body>
     <h1>onorientationchange orientation 偵測</h1>
+    <video id="video" controls width="400"></video>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
+      if (Hls.isSupported()) {
+      }
+      const video = document.querySelector("#video");
+      const hls = new Hls();
+      hls.attachMedia(video);
+
+      function fullScreen(video) {
+        try{
+          if (video.requestFullscreen) {
+            video.requestFullscreen();
+          } else if (video.mozRequestFullScreen) {
+            video.mozRequestFullScreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          } else {
+            alert("Full screen not supported");
+            return;
+          }
+        }
+        catch(err){
+          console.error('fullScreen err',err);
+        }
+      }
+
+      hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+        console.log("video and hls.js are now bound together !");
+        hls.loadSource(
+          "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+        );
+        hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+          console.log(
+            "manifest loaded, found " + data.levels.length + " quality level"
+          );
+          console.log("star video after 5s ");
+          // setTimeout(() => {
+          video.muted = true;
+          video.play();
+          // video.requestFullscreen();
+          fullScreen(video)
+          console.log("MANIFEST_PARSED play video success");
+          // }, 5000);
+        });
+      });
+
       window.addEventListener(
         "onorientationchange" in window ? "orientationchange" : "resize",
         function () {
@@ -18,9 +66,14 @@
           // if (window.orientation === 90 || window.orientation === -90) {
           //   alert("横屏状态！");
           // }
-          const match = window.matchMedia("(orientation: portrait)").matches
-          if(match)alert('true 直向')
-          else alert('false 橫向')
+          const match = window.matchMedia("(orientation: portrait)").matches;
+          if (match) {
+            console.log("直");
+            fullScreen(video)
+          } else {
+            console.log("橫");
+            fullScreen(video)
+          }
         },
         false
       );
