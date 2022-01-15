@@ -25,12 +25,19 @@
       controls
       width="400"
     ></video>
+    <video
+      id="video3"
+      src="http://techslides.com/demos/sample-videos/small.mp4"
+      controls
+      width="400"
+    ></video>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
       if (Hls.isSupported()) {
       }
       const video = document.querySelector("#video");
       const video2 = document.querySelector("#video2");
+      const video3 = document.querySelector("#video3");
       const btn = document.querySelector("button");
       const hls = new Hls();
       hls.attachMedia(video);
@@ -51,7 +58,7 @@
           } else if (video.webkitEnterFullScreen) {
             video.webkitEnterFullScreen();
           } else {
-            alert("Full screen not supported s1");
+            alert("Full screen not supported s2");
             return;
           }
         } catch (err) {
@@ -73,7 +80,7 @@
           video.muted = true;
           video.play();
           // video.requestFullscreen();
-          fullScreen(video);
+          fullScreen(video3);
           console.log("MANIFEST_PARSED play video success");
           // }, 5000);
         });
