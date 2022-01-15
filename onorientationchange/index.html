@@ -35,6 +35,7 @@
     <script>
       if (Hls.isSupported()) {
       }
+      alert('test 1')
       const video = document.querySelector("#video");
       const video2 = document.querySelector("#video2");
       const video3 = document.querySelector("#video3");
@@ -95,13 +96,14 @@
           // if (window.orientation === 90 || window.orientation === -90) {
           //   alert("横屏状态！");
           // }
+          video3.muted = true;
           const match = window.matchMedia("(orientation: portrait)").matches;
           if (match) {
             console.log("直");
-            fullScreen(video);
+            fullScreen(video3);
           } else {
             console.log("橫");
-            fullScreen(video);
+            fullScreen(video3);
           }
         },
         false
