@@ -58,7 +58,7 @@
           } else if (video.webkitEnterFullScreen) {
             video.webkitEnterFullScreen();
           } else {
-            alert("Full screen not supported s2");
+            alert("Full screen not supported s3");
             return;
           }
         } catch (err) {
@@ -77,8 +77,8 @@
           );
           console.log("star video after 5s ");
           // setTimeout(() => {
-          video.muted = true;
-          video.play();
+          video3.muted = true;
+          video3.play();
           // video.requestFullscreen();
           fullScreen(video3);
           console.log("MANIFEST_PARSED play video success");
