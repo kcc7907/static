@@ -5,22 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      button{
+        background-color: blue;
+        color: #fff;
+        border-radius: 10%;
+        padding: 0.5rem 1rem;
+      }
+    </style>
   </head>
   <body>
     <h1>onorientationchange orientation 偵測</h1>
+    <button>video2 click play</button>
+    <br>
     <video id="video" controls width="400"></video>
+    <video
+      id="video2"
+      src="http://techslides.com/demos/sample-videos/small.mp4"
+      controls
+      width="400"
+    ></video>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
       if (Hls.isSupported()) {
       }
       const video = document.querySelector("#video");
+      const video2 = document.querySelector("#video2");
+      const btn = document.querySelector("button");
       const hls = new Hls();
       hls.attachMedia(video);
-
+      btn.addEventListener('click',()=>{
+        video2.play()
+        fullScreen(video2)
+      })
       function fullScreen(video) {
-        try{
+        try {
           if (video.requestFullscreen) {
-            video.requestFullscreen();
+            video.requestFullscreen().catch(err=>console.error("requestFullscreen err", err));
           } else if (video.mozRequestFullScreen) {
             video.mozRequestFullScreen();
           } else if (video.webkitRequestFullscreen) {
@@ -30,12 +51,11 @@
           } else if (video.webkitEnterFullScreen) {
             video.webkitEnterFullScreen();
           } else {
-            alert("Full screen not supported");
+            alert("Full screen not supported s1");
             return;
           }
-        }
-        catch(err){
-          console.error('fullScreen err',err);
+        } catch (err) {
+          console.error("fullScreen err", err);
         }
       }
 
@@ -53,7 +73,7 @@
           video.muted = true;
           video.play();
           // video.requestFullscreen();
-          fullScreen(video)
+          fullScreen(video);
           console.log("MANIFEST_PARSED play video success");
           // }, 5000);
         });
@@ -71,10 +91,10 @@
           const match = window.matchMedia("(orientation: portrait)").matches;
           if (match) {
             console.log("直");
-            fullScreen(video)
+            fullScreen(video);
           } else {
             console.log("橫");
-            fullScreen(video)
+            fullScreen(video);
           }
         },
         false
