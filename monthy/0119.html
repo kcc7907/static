@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1123 meet</title>
+    <style>
+      .copy {
+        background: #fff;
+        border-radius: 5px;
+        padding: 0.1rem 0.2rem;
+        margin-left: 0.5rem;
+        font-size: 10px;
+      }
+      body {
+        padding: 4rem 15rem;
+      }
+      a {
+        margin-right: 0.5rem;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      li {
+        margin-bottom: 1rem;
+      }
+      ol {
+        margin-bottom: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>1 / 19</h1>
+    <div>
+      <h3>
+        <a href="https://mag.joy.com.tw/look_inside/magazine" target="_blank">雜誌官網 線上電子書</a>
+        <a
+          href="https://joyadmin.joy.com.tw/login"
+          target="_blank"
+          >joyAdmin</a
+        >
+      </h3>
+      <ol>
+        <li>新增線上閱讀頁面</li>
+        <li>六本雜誌製作</li>
+        <li>後台序號管理頁面製作</li>
+        <li>
+          <span
+            >des_cheng@joy.com.tw</span
+          >
+          <button class="copy" onclick="copy()">copy</button>
+        </li>
+      </ol>
+    </div>
+
+    <h3>
+      <a
+        href="https://joyshop.joy.com.tw/"
+        target="_blank"
+        >網路書店</a
+      >
+    </h3>
+    <ol>
+      <li>新增生活精選分類及各產品</li>
+    </ol>
+
+    <h3>
+      <a href="https://testedutool.joy.com.tw/" target="_blank">Edutool</a>
+    </h3>
+    <ol>
+      <li>新增分校篩選</li>
+      <li>新增教案模板</li>
+      <li>新增小叮嚀</li>
+      <li>新課程顯示區塊調整</li>
+    </ol>
+
+    <script>
+      function copy() {
+        let text = event.target.closest("li").querySelector("span").innerText;
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+          let textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            let successful = document.execCommand("copy");
+            console.log("Copying text command was " + text);
+          } catch (err) {
+            console.log("Unable to copy value , error : " + err.message);
+          }
+          document.body.removeChild(textArea);
+          return;
+        }
+        console.log(text);
+        navigator.clipboard.writeText(text);
+      }
+    </script>
+  </body>
+</html>
