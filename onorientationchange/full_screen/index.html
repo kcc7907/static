@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onorientationchange fullScreen test</title>
+  </head>
+  <body>
+    <h1>html pure auto play</h1>
+    <video
+      id="video"
+      src="https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_30mb.mp4"
+      controls
+      width="300"
+      muted
+      autoplay
+    ></video
+    ><br />
+
+    <h1>onorientationchange fullScreen test</h1>
+    <video
+      id="video_full"
+      src="https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_30mb.mp4"
+      controls
+      width="300"
+    ></video>
+
+    <script>
+      const video = document.querySelector("#video_full");
+
+      function fullScreen(video) {
+        if (video.requestFullscreen) {
+          video
+            .requestFullscreen()
+            .catch((err) => console.log("requestFullscreen err", err));
+            console.log('flag 1');
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+          console.log('flag 2');
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+          console.log('flag 3');
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+          console.log('flag 4');
+        } else if (video.webkitEnterFullScreen) {
+          video.webkitEnterFullScreen();
+          console.log('flag 5');
+        } else {
+          alert("Full screen not supported");
+          return;
+        }
+      }
+
+      window.addEventListener(
+        "onorientationchange" in window ? "orientationchange" : "resize",
+        function () {
+          video.muted = true;
+          const match = window.matchMedia("(orientation: portrait)").matches;
+          if (match) {
+            console.log("直");
+            video.play();
+            fullScreen(video);
+          } else {
+            console.log("橫");
+            video.play();
+            fullScreen(video);
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

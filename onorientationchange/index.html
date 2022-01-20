@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button{
+        background-color: blue;
+        color: #fff;
+        border-radius: 10%;
+        padding: 0.5rem 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>onorientationchange orientation 偵測</h1>
+    <button>video2 click play</button>
+    <br>
+    <video id="video" controls width="400"></video>
+    <video
+      id="video2"
+      src="http://techslides.com/demos/sample-videos/small.mp4"
+      controls
+      width="400"
+    ></video>
+    <video
+      id="video3"
+      src="http://techslides.com/demos/sample-videos/small.mp4"
+      controls
+      width="400"
+    ></video>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+      if (Hls.isSupported()) {
+      }
+      alert('test 1')
+      const video = document.querySelector("#video");
+      const video2 = document.querySelector("#video2");
+      const video3 = document.querySelector("#video3");
+      const btn = document.querySelector("button");
+      const hls = new Hls();
+      hls.attachMedia(video);
+      btn.addEventListener('click',()=>{
+        video2.play()
+        fullScreen(video2)
+      })
+      function fullScreen(video) {
+        try {
+          if (video.requestFullscreen) {
+            video.requestFullscreen().catch(err=>console.error("requestFullscreen err", err));
+          } else if (video.mozRequestFullScreen) {
+            video.mozRequestFullScreen();
+          } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+          } else if (video.msRequestFullscreen) {
+            video.msRequestFullscreen();
+          } else if (video.webkitEnterFullScreen) {
+            video.webkitEnterFullScreen();
+          } else {
+            alert("Full screen not supported s3");
+            return;
+          }
+        } catch (err) {
+          console.error("fullScreen err", err);
+        }
+      }
+
+      hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+        console.log("video and hls.js are now bound together !");
+        hls.loadSource(
+          "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8"
+        );
+        hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+          console.log(
+            "manifest loaded, found " + data.levels.length + " quality level"
+          );
+          console.log("star video after 5s ");
+          // setTimeout(() => {
+          video3.muted = true;
+          video3.play();
+          // video.requestFullscreen();
+          fullScreen(video3);
+          console.log("MANIFEST_PARSED play video success");
+          // }, 5000);
+        });
+      });
+
+      window.addEventListener(
+        "onorientationchange" in window ? "orientationchange" : "resize",
+        function () {
+          // if (window.orientation === 180 || window.orientation === 0) {
+          //   alert("竖屏状态！");
+          // }
+          // if (window.orientation === 90 || window.orientation === -90) {
+          //   alert("横屏状态！");
+          // }
+          video3.muted = true;
+          const match = window.matchMedia("(orientation: portrait)").matches;
+          if (match) {
+            console.log("直");
+            fullScreen(video3);
+          } else {
+            console.log("橫");
+            fullScreen(video3);
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
