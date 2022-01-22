@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../lib/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js" integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/duration.min.js" integrity="sha512-4/QKmrYrL+3JbEBiIxAUwlsjv1duqB5biE640aqvCJEqgTfyhmCA9WeqJmVfQdeh2hqK9+Fc9WFVpel4N2O/1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>countdown type2</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      3/15倒數:
+      <span data-type="DD" data-max="0"></span>天
+      <span data-type="HH" data-max="23"></span>小時
+      <span data-type="mm" data-max="59"></span>分鐘
+      <span data-type="ss" data-max="59"></span>秒
+    </h1>
+
+    <script>
+      dayjs.extend(dayjs_plugin_duration)
+      const endDate = '2022-3-15'
+      const d = dayjs
+      const diff = d(endDate).diff(dayjs())
+
+      $('h1 span').each((index,el) => {
+        const type = $(el).attr('data-type')
+        const text = d.duration(diff).format(type)
+        $(el).text(text)
+      });
+
+      setInterval(() => {
+        const diff = d(endDate).diff(dayjs())
+        const text = d.duration(diff).format('3/15倒數: DD天 HH小時 mm分鐘 ss秒')
+        $('h1').text(text)
+      }, 1000)
+    </script>
+  </body>
+</html>
