@@ -25,12 +25,14 @@
     <a class="text-center" href="https://www.pexels.com/api" target="_blank">
       <h1>PEXELS API</h1>
     </a>
-    <a class="link text-center" href="https://github.com/kcc7907/static/blob/master/pexel_api/index.html" target="_blank">
+    <a class="link text-center" href="https://github.com/kcc7907/static/blob/master/pexel_api/index.html"
+      target="_blank">
       <h3>Demo code</h3>
     </a>
   </div>
   <div id="app" class="row p-4">
-    <div class="bg-dark bg-opacity-75 align-items-center d-flex fixed-top justify-content-center vh-100 vw-100" v-if="list.length ===0">
+    <div class="bg-dark bg-opacity-75 align-items-center d-flex fixed-top justify-content-center vh-100 vw-100"
+      v-if="list.length ===0">
       <div class="spinner-border text-primary" style="width: 5rem; height: 5rem" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
@@ -68,8 +70,11 @@
     crossorigin="anonymous"></script>
 
   <script>
-    const request = async (url, data, config) =>
-      await fetch(url, config ? config : data).then((data) => data.json());
+    const random = () => {
+      return `${Math.floor(Math.random() * 1000000)}`.replace(/\d/g, '') + atob('NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYzI5YWZkMTRhZTExNDVlZWFmMWQwMzQzNDI5NzM4ODU=')
+    }
+    const h = new Headers({ 'Authorization': random() });
+    const request = async (url, config) => await fetch(url, config || { headers: h }).then((data) => data.json());
     const app = new Vue({
       el: "#app",
       data() {
@@ -92,12 +97,12 @@
           this.modal_video = link;
           this.modal.show();
         },
-        search(){
+        search() {
           this.list = []
           request(`https://api.pexels.com/videos/search?query=${this.input}`).then((res) => {
-          console.log("pexels search", res);
-          this.list = res.videos;
-        });
+            console.log("pexels search", res);
+            this.list = res.videos;
+          });
         }
       },
     });
