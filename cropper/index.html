@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cropper</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.js"
+      integrity="sha512-IlZV3863HqEgMeFLVllRjbNOoh8uVj0kgx0aYxgt4rdBABTZCl/h5MfshHD9BrnVs6Rs9yNN7kUQpzhcLkNmHw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.css"
+      integrity="sha512-6QxSiaKfNSQmmqwqpTNyhHErr+Bbm8u8HHSiinMEz0uimy9nu7lc/2NaXJiUJj2y4BApd5vgDjSHyLzC8nP6Ng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div>
+      <input type="file" name="" id="input" accept="image/png,image/jpeg" />
+      <button>crop</button>
+      <img id="img"/>
+    </div>
+
+    <script>
+      const input = document.querySelector("#input");
+      const img = document.querySelector("#img");
+      const btn = document.querySelector("button");
+      input.addEventListener("change", (e) => {
+        let file = e.target.files[0];
+        console.log("change");
+        if (file) {
+          let reader = new FileReader();
+          reader.onload = function (evt) {
+            let imgSrc = evt.target.result;
+            console.log("reader load",imgSrc);
+            img.src = imgSrc
+            new Cropper(img,{});
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+  </body>
+</html>
