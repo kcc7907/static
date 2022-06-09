@@ -47,7 +47,9 @@
     Not innerHtml : 
     <p data-i18n="lines"></p><br>
     innerHtml : 
-    <p data-i18n="[html]lines"></p>
+    <p data-i18n="[html]lines"></p><br><br>
+    ns 多檔案 : 
+    <p data-i18n="name:testName"></p>
 
     <script>
       (async () => {
@@ -56,7 +58,7 @@
           {
             lng: ["en", "tw"],
             fallbackLng: "en",
-            ns: ["data"],
+            ns: ["data","name"],
             defaultNS: "data",
             backend: {
               loadPath: "./lang/{{lng}}/{{ns}}.json",
