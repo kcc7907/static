@@ -9,12 +9,19 @@
     <script src="../../lib/vue.js"></script>
     <!-- <script src="./liff.js"></script> -->
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.5.0/eruda.min.js" integrity="sha512-0y0y2UOZjmA4aeGoU6yB3f7838n0mgVcKu3IQrkf/xMtjHaGrpSnp8HVKiHrGBL540Eke/KE98XKYyfIzSMM4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.5.0/eruda.min.js"
+      integrity="sha512-0y0y2UOZjmA4aeGoU6yB3f7838n0mgVcKu3IQrkf/xMtjHaGrpSnp8HVKiHrGBL540Eke/KE98XKYyfIzSMM4A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <main id="app">
       <h1 v-html="h1">liff</h1>
       <button @click="login">login</button>
+      <br /><br />
+      <button @click="open">open</button>
     </main>
 
     <script>
@@ -36,11 +43,17 @@
         console.log("liff getLanguage", liff.getLanguage());
         console.log("liff getVersion", liff.getLineVersion());
         console.log("liff isInClient", liff.isInClient());
+        console.log("liff isLoggedIn", liff.isLoggedIn());
         console.log(
           "liff getProfile",
-          liff.getProfile().catch((e) => {
-            console.error(`LIFF getProfile error: ${e.message}`);
-          })
+          liff
+            .getProfile()
+            .then((res) => {
+              console.log("getProfile", res);
+            })
+            .catch((e) => {
+              console.error(`LIFF getProfile error: ${e.message}`);
+            })
         );
 
         new Vue({
@@ -56,6 +69,10 @@
             login() {
               console.log("login");
               liff.login();
+            },
+
+            open() {
+              window.open(`https://liff.line.me/1657366545-Zg7e4yMG`, "_blank");
             },
           },
         });
