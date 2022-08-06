@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>liff</title>
+
+    <script src="../../lib/vue.js"></script>
+    <!-- <script src="./liff.js"></script> -->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/eruda/2.5.0/eruda.min.js" integrity="sha512-0y0y2UOZjmA4aeGoU6yB3f7838n0mgVcKu3IQrkf/xMtjHaGrpSnp8HVKiHrGBL540Eke/KE98XKYyfIzSMM4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <main id="app">
+      <h1 v-html="h1">liff</h1>
+      <button @click="login">login</button>
+    </main>
+
+    <script>
+      (async () => {
+        eruda.init();
+
+        await liff
+          .init({ liffId: "1657366545-Zg7e4yMG" })
+          .then(() => {
+            console.log("init ok");
+          })
+          .catch((e) => {
+            console.error(`LIFF error: ${e.message}`);
+          });
+
+        console.log("liff", liff);
+
+        console.log("liff getOS", liff.getOS());
+        console.log("liff getLanguage", liff.getLanguage());
+        console.log("liff getVersion", liff.getLineVersion());
+        console.log("liff isInClient", liff.isInClient());
+        console.log(
+          "liff getProfile",
+          liff.getProfile().catch((e) => {
+            console.error(`LIFF getProfile error: ${e.message}`);
+          })
+        );
+
+        new Vue({
+          el: "#app",
+
+          data() {
+            return {
+              h1: "liff-test",
+            };
+          },
+
+          methods: {
+            login() {
+              console.log("login");
+              liff.login();
+            },
+          },
+        });
+      })();
+    </script>
+  </body>
+</html>
