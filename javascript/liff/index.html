@@ -46,17 +46,24 @@
         console.log("liff getVersion", liff.getLineVersion());
         console.log("liff isInClient", liff.isInClient());
         console.log("liff isLoggedIn", liff.isLoggedIn());
-        console.log(
-          "liff getProfile",
-          liff
-            .getProfile()
-            .then((res) => {
-              console.log("getProfile", res);
-            })
-            .catch((e) => {
-              console.error(`LIFF getProfile error: ${e.message}`);
-            })
-        );
+        console.log("liff getAId", liff.getAId());
+        console.log("liff getContext", liff.getContext());
+        liff
+          .getProfile()
+          .then((res) => {
+            console.log("getProfile", res);
+          })
+          .catch((e) => {
+            console.error(`LIFF getProfile error: ${e.message}`);
+          });
+        liff
+          .getProfilePlus()
+          .then((res) => {
+            console.log("getProfilePlus", res);
+          })
+          .catch((e) => {
+            console.error(`LIFF getProfilePlus error: ${e.message}`);
+          });
 
         new Vue({
           el: "#app",
@@ -74,7 +81,7 @@
             },
 
             logout() {
-              console.log("login");
+              console.log("logout");
               liff.logout();
             },
 
