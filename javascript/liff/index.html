@@ -56,14 +56,6 @@
           .catch((e) => {
             console.error(`LIFF getProfile error: ${e.message}`);
           });
-        liff
-          .getProfilePlus()
-          .then((res) => {
-            console.log("getProfilePlus", res);
-          })
-          .catch((e) => {
-            console.error(`LIFF getProfilePlus error: ${e.message}`);
-          });
 
         new Vue({
           el: "#app",
