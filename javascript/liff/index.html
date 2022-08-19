@@ -22,6 +22,8 @@
       <button @click="login">login</button>
       <br /><br />
       <button @click="open">open</button>
+      <br /><br />
+      <button @click="logout">logout</button>
     </main>
 
     <script>
@@ -69,6 +71,11 @@
             login() {
               console.log("login");
               liff.login();
+            },
+
+            logout() {
+              console.log("login");
+              liff.logout();
             },
 
             open() {
