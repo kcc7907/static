@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntersectionObserver Test</title>
+
+    <script src="../../lib/jquery.min.js"></script>
+
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      section {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: white;
+      }
+      section:nth-child(even) {
+        background: lightblue;
+      }
+      section:nth-child(odd) {
+        background: lightcoral;
+      }
+      .title_wrap {
+        position: fixed;
+        top: 50%;
+        padding-left: 10px;
+        transform: translateY(-50%);
+      }
+
+      .title.on {
+        background: rebeccapurple;
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="sec" data-num="1">section 1</section>
+    <section class="sec" data-num="2">section 2</section>
+    <section class="sec" data-num="3">section 3</section>
+    <section class="sec" data-num="4">section 4</section>
+    <section class="sec" data-num="5">section 5</section>
+    <section class="sec" data-num="6">section 6</section>
+    <section class="sec" data-num="7">section 7</section>
+    <section class="sec" data-num="8">section 8</section>
+    <section class="sec" data-num="9">section 9</section>
+    <section class="sec" data-num="10">section 10</section>
+
+    <div class="title_wrap">
+      <div class="title t1">title1</div>
+      <div class="title t2">title2</div>
+      <div class="title t3">title3</div>
+      <div class="title t4">title4</div>
+      <div class="title t5">title5</div>
+      <div class="title t6">title6</div>
+      <div class="title t7">title7</div>
+      <div class="title t8">title8</div>
+      <div class="title t9">title9</div>
+      <div class="title t10">title10</div>
+    </div>
+
+    <script>
+      const callback = (entries, observer) => {
+        entries.forEach((entry) => {
+          const num = $(entry.target).attr("data-num");
+          if (entry.isIntersecting) {
+            $(".title").eq(num - 1).addClass("on");
+          } else {
+            $(".title").eq(num - 1).removeClass("on");
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(callback, {
+        //調整大小  控制何時切換CLASS
+        rootMargin: "-50%",
+      });
+
+      $(".sec").each((i, e) => {
+        observer.observe(e);
+      });
+    </script>
+  </body>
+</html>
